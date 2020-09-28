@@ -21,8 +21,8 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
               <a class="nav-item nav-link text-decoration-none font-weight-bold mr-2 ml-2 @yield('home')" href="{{url('/home')}}">HOME</a>
-              <a class="nav-item nav-link font-weight-bold mr-4 ml-2 @yield('about')" href="{{url('/about')}}">ABOUT US</a>
-              <a class="nav-item nav-link text-decoration-none font-weight-bold mr-2 ml-2 @yield('home')" href="{{url('/home')}}">LOGIN</a>
+              <a class="nav-item nav-link font-weight-bold mr- ml-2 @yield('about')" href="{{url('/about')}}">ABOUT US</a>
+              <a class="nav-item nav-link font-weight-bold mr-4 ml-2 @yield('login')" href="{{url('/login')}}">LOGIN</a>
             </div>
           </div>
         </center>
