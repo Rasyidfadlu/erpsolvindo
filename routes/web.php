@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('home');
+});
+
 Route::get('/home', function () {
     return view('home');
 });
@@ -25,8 +29,19 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/dashboardAdmin', function () {
+    return view('dashboardAdmin');
+});
+
+
 Route::get('/register', 'AuthController@getRegister')->name('register')->middleware('guest');
 Route::post('/register', 'AuthController@postRegister')->middleware('guest');
 Route::get('/login', 'AuthController@getLogin')->name('login')->middleware('guest');
 Route::post('/login', 'AuthController@postLogin')->middleware('guest');
 Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('logout');
+
+Route::post('/ispPartner', 'CustomerController@store')->middleware('auth')->name('ispPartner');
+Route::get('/ispPartner', 'CustomerController@index')->middleware('auth')->name('ispPartner');
+Route::get('/ispPartner/create', 'CustomerController@create')->middleware('auth')->name('ispPartnerCreate');
+Route::get('/ispPartner/search', 'CustomerController@search')->middleware('auth')->name('ispPartnersearch');
+Route::get('/ispPartner/{id}', 'CustomerController@detail')->middleware('auth')->name('ispPartnerindestroy');

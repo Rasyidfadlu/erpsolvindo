@@ -4,21 +4,25 @@
 
 @section('style')
   <link rel="stylesheet" href="{{ URL::asset('/css/login.css')}}">
+  <style>
+      body{
+        background-image:url('assets/image/login.jpg');
+        background-repeat:no-repeat;
+        background-size:cover;
+      }
+    </style>
 @endsection
 
+@section('login'  , 'aktif')
+
 @section('home'  , 'sliding-underline')
-@section('berita', 'sliding-underline')
-@section('info'  , 'sliding-underline')
-@section('report', 'sliding-underline')
 @section('about' , 'sliding-underline')
 
 @section('container')
 
-    <div class="content">
+    <!-- <img class="bg-login" src="{{ URL::asset('/assets/image/login.jpg')}}" alt=""> -->
+    <div class="content" >
         <div class="row no-gutters">
-            <!--<div class="col-md-6 bgKiri">
-                <img class="bg-login" src="{{ URL::asset('/assets/image/login.gif')}}" alt="">
-            </div>-->
             <div class="col-md-6 formKanan">
                 <form method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
@@ -43,7 +47,7 @@
                          <button class="btn tombol-login font-weight-bold text-center mb-5">LOGIN</button>
                     </div>
                 </form>
-                <div class="h6 font-weight-bold text-center">Don't have account ? <a class="text-decoration-none register" href="{{url('/register')}}">Register</a></div>
+                <div class="h6 font-weight-bold text-center register">Don't have account ? <a class="text-decoration-none register" href="{{url('/register')}}">Register</a></div>
             </div>
         </div>
     </div>

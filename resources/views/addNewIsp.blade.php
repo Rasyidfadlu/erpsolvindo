@@ -1,6 +1,6 @@
 @extends('layout/templateAdmin')
 
-@section('title', 'Form Berita')
+@section('title', 'Add New Isp')
 
 @section('style')
     <link rel="stylesheet" href="{{ URL::asset('/css/addNewIsp.css')}}">
@@ -19,6 +19,24 @@ $action = 'edit';
 $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
 }
 ?>
+
+@if (session('error'))
+ <div class="alert alert-error">
+  {{ session('error') }}
+ </div>
+@endif
+
+ @if (count($errors) > 0)
+ <div class="alert alert-danger">
+  <strong>Perhatian !!!</strong>
+  <br />
+  <ul>
+   @foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+  </ul>
+</div>
+@endif
 
 <div class="col-md-10 content">
     <h1 class="judul mt-2 ml-2 text-dark">
@@ -44,50 +62,47 @@ $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
                             @method('PATCH')
                         @endif         
                         <div class="form-group">
-                            <input type="text" placeholder="Account Name" class="form-control" name="Account" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="Account Name" class="form-control" name="Company_Name" value="{{ old('Company_Name') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Alias(Nama Pangilan)" class="form-control" name="Alias" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="Alias(NamaPangilan)" class="form-control" name="Acc_Parent" value="{{ old('Acc_Parent') }}">
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="Address" class="form-control" name="Address" value="{{ old('Judul', @$berita->Judul) }}"></textarea>
+                            <textarea type="text" placeholder="Address" class="form-control" name="Address" value="{{ old('Address') }}"></textarea>
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="Street" class="form-control" name="Street" value="{{ old('Headline', @$berita->Headline) }}"></textarea>
+                            <textarea type="text" placeholder="Street" class="form-control" name="Street" value="{{ old('Street') }}"></textarea>
+                        </div>
+                        <div class="form-group">    
+                            <input type="text" placeholder="City" class="form-control" name="City" value="{{ old('City') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="City" class="form-control" name="city" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="Province" class="form-control" name="Province" value="{{ old('Province') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Province" class="form-control" name="Province" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="ZipCode" class="form-control" name="ZipCode" value="{{ old('ZipCode') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Zip Code" class="form-control" name="Zip Code" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="Phone" class="form-control" name="Phone" value="{{ old('Phone') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Phone" class="form-control" name="Phone" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="number" placeholder="FAX" class="form-control" name="Fax" value="{{ old('Fax') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="FAX" class="form-control" name="FAX" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="Email" class="form-control" name="Email" value="{{ old('Email') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control" name="Email" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="PIC" class="form-control" name="PIC" value="{{ old('PIC') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="PIC" class="form-control" name="PIC" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="PICPhone" class="form-control" name="Primary_Contact_No" value="{{ old('Primary_Contact_No') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="PIC Phone" class="form-control" name="PIC Phone" value="{{ old('Headline', @$berita->Headline) }}">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Sales Person" class="form-control" name="Sales Person" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="Sales Person" class="form-control" name="Sales_Person" value="{{ old('Sales_Person') }}">
                         </div>
                         <!-- <div class="form-group">
                             <input type="date" placeholder="Sales Person" class="form-control" name="Sales Person" value="{{ old('Tanggal', @$berita->Tanggal) }}">
                         </div> -->
-                        <div class="form-group">
-                            <textarea class="form-control" name="Isi">{{ old('Isi', @$berita->Isi) }}</textarea>
-                        </div>
                     </div>
                 </div>
                 
@@ -103,28 +118,28 @@ $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
     <br>
         <div class="col-md-6">    
                 <div class="form-group">
-                            <input type="text" placeholder="PIC Name" class="form-control" name="PIC Name" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="PIC Name" class="form-control" name="PIC_Billing_Name" value="{{ old('PIC_Billing_Name') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="PIC Contact No" class="form-control" name="PIC Contact No" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="PIC Contact No" class="form-control" name="PIC_Billing_Phone" value="{{ old('PIC_Billing_Phone') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="PIC Fax No" class="form-control" name="PIC Fax No" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="PIC Fax No" class="form-control" name="PIC_Billing_Fax" value="{{ old('PIC_Billing_Fax') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="PIC Email" class="form-control" name="PIC Email" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="PIC Email" class="form-control" name="PIC_Billing_Email" value="{{ old('PIC_Billing_Email') }}">
                         </div>
                         <div class="form-group">
-                            <input type="datetime-local" placeholder="Contract Start" class="form-control" name="Contract Start" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="datetime-local" placeholder="Contract Start" class="form-control" name="Contract_Start" value="{{ old('Contract_Start') }}">
                         </div>
                         <div class="form-group">
-                            <input type="datetime-local" placeholder="Contract End" class="form-control" name="Contract End" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="datetime-local" placeholder="Contract End" class="form-control" name="Contract_End" value="{{ old('Contract_End') }}">
                         </div>
                         <div class="form-group">
-                            <input type="number" placeholder="Invoice Due Days" class="form-control" name="Invoice Due Days" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="number" placeholder="Invoice Due Days" class="form-control" name="Due_Days" value="{{ old('Due_Days') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Contract No" class="form-control" name="Contract No" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="Contract No" class="form-control" name="Contract_No" value="{{ old('Contract_No') }}">
                         </div>
                         
                 </div>
@@ -143,41 +158,39 @@ $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
     <div class="col-md-6">    
                 <div class="form-group">
             <span class="text-secondary">PPH</span>
-          <input type="checkbox" placeholder="PPH" style="margin-left : 200px;" name="PPH" value="{{ old('Judul', @$berita->Judul) }}">
+          <input type="checkbox" placeholder="PPH" style="margin-left : 200px;" name="PPH" value="{{ old('PPH') }}">
                             
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="VAT No (NPWP)" class="form-control" name="VAT No (NPWP)" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="VAT No (NPWP)" class="form-control" name="NPWP" value="{{ old('NPWP') }}">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="VAT Company Name" class="form-control" name="VAT Company Name" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="text" placeholder="VAT Company Name" class="form-control" name="VAT_NAME" value="{{ old('VAT_NAME') }}">
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="VAT Address" class="form-control" name="VAT Address" value="{{ old('Headline', @$berita->Headline) }}"></textarea>
+                            <textarea type="text" placeholder="VAT Address" class="form-control" name="VAT_Address" value="{{ old('VAT_Address') }}"></textarea>
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="VAT Street" class="form-control" name="VAT Street" value="{{ old('Judul', @$berita->Judul) }}"></textarea>
+                            <textarea type="text" placeholder="VAT Street" class="form-control" name="VAT_Street" value="{{ old('VAT_Street') }}"></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="VAT City" class="form-control" name="VAT City" value="{{ old('Headline', @$berita->Headline) }}">
+                            <input type="text" placeholder="VAT City" class="form-control" name="VAT_City" value="{{ old('VAT_City') }}">
                         </div>
                         <div class="form-group">
-                            <input type="number" placeholder="VAT Prefik" class="form-control" name="VAT Prefik" value="{{ old('Judul', @$berita->Judul) }}">
+                            <input type="number" placeholder="VAT Prefik" class="form-control" name="VAT_Prefix" value="{{ old('VAT_Prefix') }}">
                         </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Contract No" class="form-control" name="Contract No" value="{{ old('Headline', @$berita->Headline) }}">
-                        </div>
+                        <button type="submit" class="btn btn-danger" href="#">RESET</button> <button type="submit" class="btn btn-secondary">SUBMIT</button>
                         
                 </div>
         </div>
-    </div>        
+    <!-- </div>        
             </form>
 
             <div class="form-group">
                 <textarea class="form-control" name="Isi">{{ old('Isi', @$berita->Isi) }}</textarea>
             </div>
             <button type="submit" class="btn btn-dark">SAVE</button> 
-    </div>
+    </div> -->
 
 
 

@@ -79,7 +79,7 @@ body {
 }
 
 
-/* .page-link {
+.page-link {
     background: #252733;
     color: white;
 }
@@ -87,7 +87,7 @@ body {
 .page-link:hover {
     background: #007bff;
     color: white;
-} */
+}
 
 .card-body-icon {
     position: absolute;

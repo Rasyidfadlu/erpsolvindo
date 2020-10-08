@@ -7,15 +7,15 @@ body {
 /* CSS Navbar */
 
 .navbar {
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #939799;
+    color: #ffffff;
 }
 
 a {
-    color: #939799;
+    color: #ffffff;
 }
 
 a:hover {
@@ -24,16 +24,16 @@ a:hover {
 
 .navbar-brand {
     font-weight: bold;
-    color: #939799;
+    color: #ffffff;
 }
 
 .btn-login {
-    background: #939799;
+    background: #17b2ff;
     border-radius: 5px;
 }
 
 .navbar-toggler {
-    color: #939799;
+    color: #17b2ff;
 }
 
 
@@ -43,8 +43,8 @@ a:hover {
     background-repeat: no-repeat;
     position: absolute;
     width: 100%;
-    height: 110%;
-    background-size: 100%;
+    height: 100%;
+    background-size: fixed;
     z-index: -1;
 }
 
@@ -52,7 +52,7 @@ a:hover {
 /* Active */
 
 .aktif {
-    border-bottom: 3px solid #939799;
+    border-bottom: 3px solid #ffffff;
 }
 
 
@@ -83,13 +83,13 @@ a:hover {
     bottom: 0;
     height: 3px;
     width: 0;
-    background: #939799;
+    background: #ffffff;
     transition: width .5s ease;
 }
 
 .sliding-underline:hover:before {
     width: 100%;
-    background: #939799;
+    background: #ffffff;
     transition: width .5s ease;
 }
 
@@ -114,23 +114,23 @@ a:hover {
 
 .judul {
     font-weight: bold;
-    color: #939799;
+    color: #ffffff;
     font-size: 50px;
 }
 
 .konten {
-    color: rgb(127, 127, 127);
+    color: rgb(255, 255, 255);
 }
 
-.btn-covid {
-    background: #939799;
+.btn-erp {
+    background: #46ec6f;
     color: white;
     font-weight: bold;
     border-radius: 20px;
 }
 
-.btn-covid:hover {
-    background: #939799;
+.btn-erp:hover {
+    background: #17b2ff;
     color: white;
     font-weight: bold;
     border-radius: 20px;

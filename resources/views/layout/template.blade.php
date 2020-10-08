@@ -13,23 +13,41 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
-        <a class="navbar-brand " href="#">ERP-SOLVINDO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <a class="navbar-brand " href="#">ERP-SOLVINDO</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <center>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link text-decoration-none font-weight-bold mr-2 ml-2 @yield('home')" href="{{url('/home')}}">HOME</a>
-              <a class="nav-item nav-link font-weight-bold mr- ml-2 @yield('about')" href="{{url('/about')}}">ABOUT US</a>
-              <a class="nav-item nav-link font-weight-bold mr-4 ml-2 @yield('login')" href="{{url('/login')}}">LOGIN</a>
-            </div>
-          </div>
+          <ul class="navbar-nav ml-auto">
+            <a class="nav-item nav-link text-decoration-none font-weight-bold mr-2 ml-2 @yield('home')" href="{{url('/home')}}">HOME</a>
+          </ul>
         </center>
-        
-      </nav>
+          <ul class="navbar-nav ml-auto">
+            <a class="nav-item nav-link font-weight-bold mr- ml-2 @yield('about')" href="{{url('/about')}}">ABOUT US</a>
+            <a class="nav-item nav-link font-weight-bold mr-4 ml-2 @yield('login')" href="{{url('/login')}}">LOGIN</a>
+          </ul>
+      </div>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </nav>
 
       @yield('container')
+    
+      <!-- <section class="footer_one home pb0">
+        <div class="container">
+          <div class="row mt10 pb50">
+            <div class="col-lg-12">
+              <div class="copyright-widget text-center mt25">
+                <p class="color-gray">&copy 2020 ERP SOVINDO</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
     
       <script src="{{URL::asset('/assets/bootstrap/js/jquery-3.4.1.min.js')}}"></script>
       <script src="{{URL::asset('/assets/bootstrap/js/popper.min.js')}}"></script>

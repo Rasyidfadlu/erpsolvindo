@@ -4,6 +4,13 @@
 
 @section('style')
   <link rel="stylesheet" href="{{ URL::asset('/css/register.css')}}">
+  <style>
+      body{
+        background-image:url('assets/image/login.jpg');
+        background-repeat:no-repeat;
+        background-size:cover;
+      }
+    </style>
 @endsection
 
 @section('home'  , 'sliding-underline')
@@ -11,7 +18,7 @@
 @section('login', 'sliding-underline')
 
 @section('container')
-
+    <!-- <img class="bg-login" src="{{ URL::asset('/assets/image/login.jpg')}}" alt=""> -->
     <div class="content">
         <div class="row no-gutters">
             <!-- <div class="col-md-6 bgKiri">
