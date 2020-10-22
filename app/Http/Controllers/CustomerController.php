@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
-
+use App\Exports\CustomerExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 class CustomerController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        $data['customer'] = \DB::table('customer')->get();
+        $data['customers'] = \DB::table('customers')->get();
         return view('ispPartner', $data);
     }
 
@@ -23,12 +25,19 @@ class CustomerController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * 
      */
     public function create()
     {
         //
         return view('addNewIsp');
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new CustomerExport, 'Customer.xlsx');
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -38,18 +47,14 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $rule = [
+            'id' => '',
             'Company_Name' => 'required|string',
             'Acc_Parent' =>  'required|string',
-            // 'Location_ID' => 'required|unique:customer',
-            // 'Customer_ID' => 'required|numeric|unique:customer',
-            // 'Customer_No' => 'required|unique:customer',
-            // 'Position' => 'required',
             'Address' => 'required',
             'Street' => 'required',
             'City' => 'required',
-            'Province' => 'required',
             'ZipCode' => 'required|numeric',
             'Phone' => 'required|numeric',
             'Fax' => 'required|numeric',
@@ -65,7 +70,6 @@ class CustomerController extends Controller
             'Contract_End' => '',
             'Due_Days' => 'required',
             'Contract_No' => 'required',
-            'PPH' => '',
             'NPWP' => 'required',
             'VAT_NAME' => 'required',
             'VAT_Address' => 'required',
@@ -74,18 +78,13 @@ class CustomerController extends Controller
             'VAT_Prefix' => 'numeric',
     
         ];
-    
+
+        //
+        $input = $request->all();
         $this->validate($request, $rule);
+        $status = \App\Customer::create($input);
     
-            $input = $request->all();
-            unset($input['_token']);
-            $status = \DB::table('customer')->insert($input);
-    
-            if ($status) {
-                return redirect('/ispPartner')->with('success', 'Berita berhasil diunggah');
-            } else {
-                return redirect('/ispPartner/create')->with('error', 'Berita gagal diunggah');
-        }
+        return redirect('/ispPartner')->with('status', 'Data berhasil diunggah');
     }
     /**
      * Display the specified resource.
@@ -95,7 +94,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+    
     }
 
     /**
@@ -104,9 +103,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit(Request $request, $id)
     {
-        //
+        $data['customers'] = \App\Customer::find($id);
+        return view('editIsp', $data);
     }
 
     /**
@@ -116,9 +116,22 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request,  $id)
     {
-        //
+        
+
+        $input = $request->all();
+        // unset($input['_token']);
+        // unset($input['_method']);
+
+        // $status = \DB::table('customers')->where('id', $id)->update($input);
+
+        $data = \App\Customer::find($id);
+        $status = $data->update($input);
+
+
+        return redirect('/ispPartner')->with('status', 'Data berhasil diubah');
+        
     }
 
     /**
@@ -127,8 +140,19 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Customer $customer, Request $request, $id)
     {
-        //
+        $customer = \App\Customer::find($id);
+
+        $status = $customer->delete();
+
+        return redirect('/ispPartner')->with('status', 'Data berhasil dihapus');
+
     }
+
+    // public function edit(Request $request, $id){
+    //     $data['ispPartner'] = \DB::table('customer')->find($ID);
+    //     return view('ispPartner', $data);
+    // }
 }
+

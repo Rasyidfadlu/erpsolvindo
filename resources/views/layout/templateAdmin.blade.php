@@ -18,8 +18,8 @@
 
 </head>
 <body>  
-    <header class="">
-        <nav class="navbar navbar-expand-lg navbar-bordered bg-light">
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-bordered  bg-light">
             <a class="navbar-brand teks-secondary mb-1 pt-4 pb-1" href="#">ERP-SOLVINDO</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 </ul>
-                <a href="/dashboardAdmin">
+                <a href="/profileAdmin">
                     <i class="fa fa-user-circle text-secondary ml-4" aria-hidden="true" style="font-size: 200%; "></i>
                 </a>
                 
@@ -39,6 +39,7 @@
             </div>
         </nav>
     </header>
+    <br><br><br><br><br>
     <!-- End Header -->
     <div class="row ">
         <div class=" side-bar">
@@ -103,17 +104,17 @@
                                         <div id="box2">
                                             <ul>
                                                 <li class="">
-                                                    <a style="font-size: 105%; margin-left: 10px;" class="text-secondary waves-effect" href="/hospitalAdmin/create">
+                                                    <a style="font-size: 105%; margin-left: 10px;" class="text-secondary waves-effect" href="/aktifasiCustomer/create">
                                                     Entri Data Prospek
                                                     </a>
                                                 </li>
                                                 <li class="">
-                                                    <a style="font-size: 105%; margin-left: 10px;" class="text-secondary waves-effect" href="#">
+                                                    <a style="font-size: 105%; margin-left: 10px;" class="text-secondary waves-effect" href="/aktifasiCustomer/prospekData">
                                                     Prospek Data
                                                     </a>
                                                 </li>
                                                 <li class="">
-                                                    <a style="font-size: 105%; margin-left: 10px;" class="text-secondary waves-effect" href="#">
+                                                    <a style="font-size: 105%; margin-left: 10px;" class="text-secondary waves-effect" href="/aktifasiCustomer/prosesInstallasi">
                                                     Proses Instalasi
                                                     </a>
                                                 </li>

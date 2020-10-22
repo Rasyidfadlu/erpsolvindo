@@ -136,7 +136,11 @@ body {
     margin-bottom: 10px;
     margin-left: 76px;
 }
-
+.wadah{
+    background-color: transparent;
+    overflow: auto;
+    white-space: nowrap;
+}
 .add {
     position: absolute;
     top: 400px;

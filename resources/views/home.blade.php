@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="{{ URL::asset('/css/home.css')}}">
   <style>
       body{
-        background-image:url('assets/image/login.jpg');
+        background-image:url('assets/image/Background.jpg');
         background-repeat:no-repeat;
         background-size:cover;
       }

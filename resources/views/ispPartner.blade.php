@@ -4,26 +4,13 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ URL::asset('/css/ispPartner.css')}}">
-	<!-- <style>
-	.scrollmenu {
-	  background-color: transparent;
-	  overflow: auto;
-	  white-space: nowrap;
-	}
-	.scrollmenu {
-	  display: inline-block;
-	  color: white;
-	  text-align: center;
-	  text-decoration: none;
-	}
-	
-	</style> -->
 @endsection
     
 @section('container')
 
-<div class="col-md-10 content">
-    <h1 class="judul mt-2 ml-2 text-dark"><i class="fas fa-newspaper ml-4"></i> Add New Isp
+<div class="col-md-10 content scrollmenu" >
+	  
+    <h1 class="judul mt-2 ml-2 text-dark"><i class="fas fa-newspaper ml-4" style="margin-left:100%;"></i> Add New Isp
     <a class="btn btn-outline-dark tombol" href="{{url('/ispPartner/create')}}">
        <h4 class="d-inline">
            <i class="fas fa-plus"></i>
@@ -31,9 +18,15 @@
     </a>
     </h1>
 	<hr class="line">
-	<div class="wadah mb-5" style="overflow-x:auto;">
-		<table class="table display table-color ml-auto mr-auto table-bordered text-dark " id="myTable">
-			<thead>
+	@if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status')}}
+        </div>
+    @endif 
+	<div class="wadah mb-5 table-responsive" style="overflow-x:auto;">
+		<table class="table display table-color ml-auto mr-auto table-bordered text-dark" id="myTable">
+			<thead class="thead-light">
+			
 				<tr>
 					<th>No</th>
 					<th>Account No</th>
@@ -55,18 +48,22 @@
 					<th>Vat_Country</th> 
 					<th>Vat_Phone</th>
 					<th>Vat_Name</th> 
+					<th>Created Date</th>
+					<th>Created By</th>
+					<th>Aksi</th>
 				</tr>
 			</thead>
+			
 			<tbody>
-				@foreach ($customer as $row)
+				@foreach ($customers as $row)
 				<tr>
 					<td>{{ isset($i) ? ++$i : $i = 1}}</td>
+					<td>{{ $row->id }}</td>
 					<td>{{ $row->Company_Name }}</td>
 					<td>{{ $row->Acc_Parent }}</td>
 					<td>{{ $row->Address }}</td>
 					<td>{{ $row->Street }}</td>
 					<td>{{ $row->City }}</td>
-					<td>{{ $row->Province }}</td>
 					<td>{{ $row->ZipCode }}</td>
 					<td>{{ $row->Phone }}</td>
 					<td>{{ $row->Fax }}</td>
@@ -80,15 +77,15 @@
 					<td>{{ $row->VAT_Country }}</td>
 					<td>{{ $row->VAT_Phone }}</td>
 					<td>{{ $row->VAT_NAME }}</td>
+					<td>{{ $row->Created_Date }}</td>
+					<td>{{ $row->Created_By }}</td>
 					<td style="border-right: none;">
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="{{ url('/ispPartner/' . $row->id . '/edit') }}" class="btn btn-success">
-                                    <i class="far fa-edit font-weight-bold text-white"></i>
-                                </a>
-                            </div>
-                            <div class="col-md-6">              
-                                <form action="{{ url('/ispPartner',$row->id) }}" method="POST">
+                                <a class="btn btn-success" href="{{ url('/ispPartner/'.$row->id .'/edit') }}">
+                                    <i class="far fa-edit tio-edit font-weight-bold text-white"></i> Edit
+                                </a>              
+                                <form class="d-inline" action="{{ url('/ispPartner',$row->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash text-white"></i></button>
@@ -100,10 +97,14 @@
 				</tr>
 			</tbody>
 		</table>
+		<a href="/customer/export_excel" class="btn btn-success" target="_blank" style="margin-right:90%;">EXPORT EXCEL</a>
 	</div>
+	
+	
 </div>
 @endsection
 
 @section('script')
-    <script src="{{ URL::asset('/js/ispPartner.js')}}"></script>
+	<script src="{{ URL::asset('/js/ispPartner.js')}}"></script>
+	<script src="../node_modules/table-edits/build/table-edits.min.js"></script>
 @endsection

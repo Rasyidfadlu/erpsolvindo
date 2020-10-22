@@ -18,7 +18,7 @@ class AuthController extends Controller
     		return redirect()->back();
     	}
 
-    	return redirect()->route('dashboardAdmin');
+    	return redirect()->route('profileAdmin');
     }
 
     //----------------------------------------------------------------------

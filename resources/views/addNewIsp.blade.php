@@ -19,26 +19,33 @@ $action = 'edit';
 $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
 }
 ?>
+<div class="col-md-10 content">
 
-@if (session('error'))
- <div class="alert alert-error">
-  {{ session('error') }}
- </div>
-@endif
+    @if (session('error'))
+    <div class="alert alert-error content">
+        {{ session('error') }}
+    </div>
+    @endif
 
- @if (count($errors) > 0)
- <div class="alert alert-danger">
-  <strong>Perhatian !!!</strong>
-  <br />
-  <ul>
-   @foreach ($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-  </ul>
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Perhatian !!!</strong>
+        <br/>
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+    </div>
+    @endif
 </div>
-@endif
 
 <div class="col-md-10 content">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status')}}
+        </div>
+    @endif    
     <h1 class="judul mt-2 ml-2 text-dark">
         <?= $title ?>
     </h1>
@@ -54,11 +61,11 @@ $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
             </div>
         </div>
 
-            <form action="{{ url('beritaAdmin', @$berita->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('ispPartner', @$customers->id) }}" method="POST" enctype="multipart/form-data">
                 <div class="row no-gutters">
                     <div class="col-md-6">
                         @csrf
-                        @if(!empty($berita))
+                        @if(!empty($customers))
                             @method('PATCH')
                         @endif         
                         <div class="form-group">
@@ -68,16 +75,13 @@ $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
                             <input type="text" placeholder="Alias(NamaPangilan)" class="form-control" name="Acc_Parent" value="{{ old('Acc_Parent') }}">
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="Address" class="form-control" name="Address" value="{{ old('Address') }}"></textarea>
+                            <input type="text" placeholder="Address" class="form-control" name="Address" value="{{ old('Address') }}">
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="Street" class="form-control" name="Street" value="{{ old('Street') }}"></textarea>
+                            <input type="text" placeholder="Street" class="form-control" name="Street" value="{{ old('Street') }}">
                         </div>
                         <div class="form-group">    
                             <input type="text" placeholder="City" class="form-control" name="City" value="{{ old('City') }}">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Province" class="form-control" name="Province" value="{{ old('Province') }}">
                         </div>
                         <div class="form-group">
                             <input type="text" placeholder="ZipCode" class="form-control" name="ZipCode" value="{{ old('ZipCode') }}">
@@ -157,9 +161,6 @@ $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
     <br>
     <div class="col-md-6">    
                 <div class="form-group">
-            <span class="text-secondary">PPH</span>
-          <input type="checkbox" placeholder="PPH" style="margin-left : 200px;" name="PPH" value="{{ old('PPH') }}">
-                            
                         </div>
                         <div class="form-group">
                             <input type="text" placeholder="VAT No (NPWP)" class="form-control" name="NPWP" value="{{ old('NPWP') }}">
@@ -168,10 +169,10 @@ $title = ' <i class=" fas fa-edit ml-4 "></i> Add New ISP/Partner';
                             <input type="text" placeholder="VAT Company Name" class="form-control" name="VAT_NAME" value="{{ old('VAT_NAME') }}">
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="VAT Address" class="form-control" name="VAT_Address" value="{{ old('VAT_Address') }}"></textarea>
+                            <input type="text" placeholder="VAT Address" class="form-control" name="VAT_Address" value="{{ old('VAT_Address') }}"></input>
                         </div>
                         <div class="form-group">
-                            <textarea type="text" placeholder="VAT Street" class="form-control" name="VAT_Street" value="{{ old('VAT_Street') }}"></textarea>
+                            <input type="text" placeholder="VAT Street" class="form-control" name="VAT_Street" value="{{ old('VAT_Street') }}"></input>
                         </div>
                         <div class="form-group">
                             <input type="text" placeholder="VAT City" class="form-control" name="VAT_City" value="{{ old('VAT_City') }}">
